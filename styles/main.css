@@ -75,6 +75,7 @@ ul {
     background: grey;
     margin: 30px auto;
     font-weight: 700;
+    box-shadow: 5px 5px rgb(50, 50, 50);
 }
 .header-newTask:hover {
     background: rgb(165, 165, 165);
@@ -104,7 +105,7 @@ ul {
     margin: 5px;
     justify-content: space-between;
     border-radius: 10px;
-    box-shadow: 3px 3px rgb(107, 107, 107);
+    box-shadow: 5px 5px rgb(105, 105, 105);
 }
 
 .card-left {
@@ -194,10 +195,11 @@ ul {
     text-align: center;
     background: gray;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     font-weight: 700;
     font-size: 1rem;
+    box-shadow: 5px 5px rgb(75, 75, 75);
 }
 .addTask-button:hover {
     background: rgb(165, 165, 165);
