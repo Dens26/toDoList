@@ -21,7 +21,7 @@ const taskTab = JSON.parse(localStorage.getItem("Task")) || [];
 // Ecouteur sur le bouton ajouter
 addTaskButton[0].addEventListener("click", evt => {
     // Si la tâche n'est pas null
-    if (inputName.value.length != 0 || inputDescription.value.length != 0) {
+    if (inputName.value.length != 0 && inputDescription.value.length != 0) {
         id = 0;
         if (taskTab.length > 0) {
             // Création de l'id unique

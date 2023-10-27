@@ -13,7 +13,7 @@ taskDescription.value = edit.description;
 
 editTaskButton[0].addEventListener("click", () => {
     // Si la tâche n'est pas null
-    if (inputName.value.length != 0 || inputDescription.value.length != 0) {
+    if (inputName.value.length != 0 && inputDescription.value.length != 0) {
         task = taskTab.find(data => data.id == edit.id);
 
         task.name = taskName.value;
