@@ -167,7 +167,7 @@ function UpdateDisplay() {
     // Affichage du nombre de tâches restantes
     document.querySelector(".task-info").innerHTML =
         taskTab.length == 0 ? `Aucune tâche pour le moment` :
-            nbr == 0 ? `il vous reste <span class="task-nbr">${nbr}</span> tâche !` :
-                `il vous reste <span class="task-nbr">${nbr}</span> tâche !`;
+            nbr <= 1 ? `il vous reste <span class="task-nbr">${nbr}</span> tâche !` :
+                `il vous reste <span class="task-nbr">${nbr}</span> tâches !`;
 
 }
