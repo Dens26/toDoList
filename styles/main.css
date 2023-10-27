@@ -1,0 +1,191 @@
+/* Général */
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+}
+
+body {
+    Font-family: Verdana, Geneva, sans-serif;
+    padding: 0 clamp(5px, 5vw, 50px);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.read-only {
+    visibility: hidden;
+    position: absolute;
+}
+
+img {
+    width: clamp(15px, 5vw, 30px);
+}
+
+ul {
+    list-style: none;
+}
+
+/* End Général */
+
+/* Cartes */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    background: white;
+}
+
+.header-title {
+    text-align: Left;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+}
+.task-info{
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 5px;
+}
+
+.task-nbr{
+    font-size: 1rem;
+    padding: 5px;
+    font-weight: 700;
+}
+.form-header-title{
+    text-align: center;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+.header-newTask {
+    border-radius: 50%;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    background: grey;
+}
+.header-newTask:hover {
+    background: rgb(165, 165, 165);
+}
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-group {
+    flex: 1 1 350px;
+    display: flex;
+    margin: 5px;
+    background: whitesmoke;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.card-left {
+    display: flex;
+}
+
+.card-checkbox {
+    margin-left: clamp(5px, 3vw, 15px);
+    min-width: clamp(15px, 5vw, 30px);
+}
+
+.card-text {
+    padding: clamp(5px, 3vw, 15px);
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: clamp(1rem, 5vw, 1.5rem);
+}
+
+.card-description {
+    font-weight: 400;
+    font-size: clamp(0.5rem, 3vw, 1rem);
+}
+
+.card-button {
+    align-self: center;
+    display: flex;
+    padding: clamp(1px, 2vw, 15px);
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+}
+/* @media screen and (min-width:768px){
+    .card-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width:1200px){
+    .card-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+} */
+/* End Cartes */
+/* Nouvelle tâche */
+.form-addTask {
+    width: 80vw;
+    max-width: 500px;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 5px black;
+    background: whitesmoke;
+}
+
+.addTask-group {
+    display: flex;
+    flex-flow: column;
+    margin: 0 auto;
+}
+
+.addTask-group label{
+    padding: 5px;
+}
+
+.addTask-group input{
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: 700;
+}
+
+.addTask-group textarea{
+    height: 60px;
+    border-radius: 5px;
+    resize: none;
+    padding: 5px;
+}
+
+.addTask-group-button{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.addTask-button {
+    width: 150px;
+    text-decoration: none;
+    text-align: center;
+    background: gray;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.addTask-button:hover {
+    background: rgb(165, 165, 165);
+}
+
+/* End Nouyvelle tâche */
