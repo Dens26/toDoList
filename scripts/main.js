@@ -147,7 +147,8 @@ function UpdateDisplay() {
     for (let i = 0; i < taskTab.length; i++) {
         // Modification de l'affichage pour la tâche coché (background, texte barré, bouton edit désactivé)
         if (cardGroup[i].children[0].children[0].checked) {
-            cardGroup[i].style.background = "grey";
+            cardGroup[i].style.background = "gray";
+            cardGroup[i].children[0].children[1].children[0].style.background = 'gray';
             cardGroup[i].children[0].children[1].children[0].style.textDecoration = "line-through";
             cardGroup[i].children[0].children[1].children[1].style.textDecoration = "line-through";
             cardGroup[i].children[1].children[1].style.pointerEvents = "none";
@@ -157,7 +158,8 @@ function UpdateDisplay() {
         }
         else {
             // Modification de l'affichage pour la tâche décoché (background, texte normal, bouton edit ré-activé)
-            cardGroup[i].style.background = "whitesmoke";
+            cardGroup[i].style.background = "white";
+            cardGroup[i].children[0].children[1].children[0].style.background = 'white';
             cardGroup[i].children[0].children[1].children[0].style.textDecoration = "none";
             cardGroup[i].children[0].children[1].children[1].style.textDecoration = "none";
             cardGroup[i].children[1].children[1].style.pointerEvents = "auto";

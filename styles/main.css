@@ -21,7 +21,7 @@ body {
 }
 
 img {
-    width: clamp(15px, 5vw, 30px);
+    width: 20px;
 }
 
 ul {
@@ -37,7 +37,8 @@ ul {
     align-items: center;
     position: sticky;
     top: 0;
-    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
     background: white;
 }
 
@@ -61,20 +62,33 @@ ul {
     text-align: center;
     font-size: clamp(1.5rem, 6vw, 2.5rem);
     padding-top: 30px;
-    padding-bottom: 15px;
 }
 
 .header-newTask {
-    border-radius: 50%;
+    text-decoration: none;
+    border-radius: 10px;
     display: flex;
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 45px;
     justify-content: center;
     align-items: center;
     background: grey;
+    margin: 30px auto;
+    font-weight: 700;
 }
 .header-newTask:hover {
     background: rgb(165, 165, 165);
+}
+
+.main-container{
+    margin-top: 20px;
+    background-color:rgb(215, 215, 215);
+    height: 70vh;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    overflow: scroll;
 }
 
 .card-container{
@@ -84,13 +98,13 @@ ul {
 }
 
 .card-group {
-    flex: 1 1 360px;
-    max-width: 550px;
+    flex: 1 1 350px;
+    height: 80px;
     display: flex;
     margin: 5px;
-    background: whitesmoke;
     justify-content: space-between;
     border-radius: 10px;
+    box-shadow: 3px 3px rgb(107, 107, 107);
 }
 
 .card-left {
@@ -98,22 +112,31 @@ ul {
 }
 
 .card-checkbox {
-    margin-left: clamp(5px, 3vw, 15px);
-    width: 20px;
+    margin: 15px;
 }
 
 .card-text {
-    padding: clamp(5px, 3vw, 15px);
+    overflow: scroll;
+    height: 65px;
 }
 
 .card-title {
+    padding: 3px;
+    padding-left: 20px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    width: 100%;
+    background: white;
     font-weight: 700;
-    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    font-size: 1.25rem
 }
 
 .card-description {
+    padding: 0 10px;
     font-weight: 400;
-    font-size: clamp(0.4rem, 3vw, 0.8rem);
+    font-size: 1rem;
+    text-align: justify;
 }
 
 .card-button {
@@ -132,7 +155,7 @@ ul {
     margin: 20px auto;
     border-radius: 15px;
     box-shadow: 0 0 5px black;
-    background: whitesmoke;
+    background: rgb(215, 215, 215);;
 }
 
 .addTask-group {
