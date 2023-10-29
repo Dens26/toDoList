@@ -10,7 +10,7 @@
 
 body {
     Font-family: Verdana, Geneva, sans-serif;
-    padding: 0 clamp(5px, 5vw, 50px);
+    padding: 0 clamp(2px, 3vw, 50px);
     max-width: 1500px;
     margin: 0 auto;
 }
@@ -32,14 +32,7 @@ ul {
 
 /* Cartes */
 .main-header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    padding-top: 30px;
-    padding-bottom: 20px;
-    background: white;
+    padding : 10px 30px;
 }
 
 .header-title {
@@ -61,7 +54,6 @@ ul {
 .form-header-title{
     text-align: center;
     font-size: clamp(1.5rem, 6vw, 2.5rem);
-    padding-top: 30px;
 }
 
 .header-newTask {
@@ -73,7 +65,7 @@ ul {
     justify-content: center;
     align-items: center;
     background: grey;
-    margin: 30px auto;
+    margin: 15px auto;
     font-weight: 700;
     box-shadow: 5px 5px rgb(50, 50, 50);
 }
@@ -82,12 +74,12 @@ ul {
 }
 
 .main-container{
-    margin-top: 20px;
+    margin-top: 10px;
     background-color:rgb(215, 215, 215);
     height: 70vh;
     border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 0 10px black;
+    padding: 5px;
+    box-shadow: 0 0 5px black;
     border-radius: 10px;
     overflow: scroll;
 }
@@ -99,8 +91,8 @@ ul {
 }
 
 .card-group {
-    flex: 1 1 350px;
-    height: 80px;
+    flex: 1 1 300px;
+    height: 60px;
     display: flex;
     margin: 5px;
     justify-content: space-between;
@@ -118,25 +110,25 @@ ul {
 
 .card-text {
     overflow: scroll;
-    height: 65px;
+    height: 55px;
 }
 
 .card-title {
-    padding: 3px;
-    padding-left: 20px;
+    padding: 2px;
+    padding-left:5px;
     position: sticky;
     top: 0;
     display: flex;
     width: 100%;
     background: white;
     font-weight: 700;
-    font-size: 1.25rem
+    font-size: 1rem
 }
 
 .card-description {
     padding: 0 10px;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: justify;
 }
 

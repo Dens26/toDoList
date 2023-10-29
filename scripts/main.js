@@ -120,8 +120,8 @@ for (let i = 0; i < cardGroup.length; i++) {
         if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")) {
             // Ajout d'une clé dernier supprimé
             localStorage.setItem("deleted", JSON.stringify(taskTab[i]));
-
             // Suppression de la tâche
+
             taskTab.splice(i, 1);
             localStorage.setItem("Task", JSON.stringify(taskTab));
 
@@ -171,5 +171,4 @@ function UpdateDisplay() {
         taskTab.length == 0 ? `Aucune tâche pour le moment` :
             nbr <= 1 ? `il vous reste <span class="task-nbr">${nbr}</span> tâche !` :
                 `il vous reste <span class="task-nbr">${nbr}</span> tâches !`;
-
 }
