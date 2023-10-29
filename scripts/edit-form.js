@@ -11,11 +11,12 @@ const edit = JSON.parse(sessionStorage.getItem("Edit"));
 inputName.value = edit.name;
 inputDescription.value = edit.description;
 
+// Ecouteur sur le bouton "Modifier"
 editTaskButton[0].addEventListener("click", () => {
     // Si la tâche n'est pas null
     if (inputName.value.length != 0 && inputDescription.value.length != 0) {
         
-        task = taskTab.find(data => data.id == edit.id);
+        let task = taskTab.find(data => data.id == edit.id);
 
         task.name = inputName.value;
         task.description = inputDescription.value;
