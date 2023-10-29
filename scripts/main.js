@@ -1,4 +1,5 @@
-import { LoadTask, UpdateDisplay } from "../modules/functions.js";
+// import * as Functions from "../modules/functions.js";
+import {LoadTask, UpdateDisplay} from "../modules/functions.js";
 
 const taskTab = [];
 LoadTask(taskTab);
@@ -28,7 +29,7 @@ for (let i = 0; i < cardGroup.length; i++) {
         if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")) {
             // Ajout d'une clé dernier supprimé
             localStorage.setItem("deleted", JSON.stringify(taskTab[i]));
-            
+
             // Suppression de la tâche
             taskTab.splice(i, 1);
             localStorage.setItem("Task", JSON.stringify(taskTab));
