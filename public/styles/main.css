@@ -5,14 +5,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: black;
 }
 
 body {
     Font-family: Verdana, Geneva, sans-serif;
-    padding: 0 clamp(2px, 3vw, 50px);
+    color: white;
     max-width: 1500px;
     margin: 0 auto;
+    background: #034141;
 }
 
 .read-only {
@@ -32,72 +32,77 @@ ul {
 
 /* Cartes */
 .main-header {
-    padding : 10px 30px;
+    display: flex;
+    justify-content: space-around;
+    background: #034141;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 20px;
 }
 
 .header-title {
     text-align: Left;
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    font-size: clamp(1.2rem, 6vw, 2.3rem);
 }
-.task-info{
+
+.task-info {
     display: block;
     font-size: 1rem;
     font-weight: 400;
     padding: 5px;
 }
 
-.task-nbr{
+.task-nbr {
     font-size: 1rem;
     padding: 5px;
     font-weight: 700;
 }
-.form-header-title{
-    text-align: center;
+
+.form-header-title {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
 }
 
 .header-newTask {
+    color: black;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
-    width: 150px;
+    width: 45px;
     height: 45px;
     justify-content: center;
     align-items: center;
-    background: grey;
-    margin: 15px auto;
+    background: white;
     font-weight: 700;
-    box-shadow: 5px 5px rgb(50, 50, 50);
+    font-size: 2rem;
 }
+
 .header-newTask:hover {
     background: rgb(165, 165, 165);
 }
 
-.main-container{
+.main-container {
+    margin: 0 clamp(2px, 3vw, 50px);
     margin-top: 10px;
-    background-color:rgb(215, 215, 215);
-    height: 70vh;
-    border-radius: 10px;
+    margin-bottom: 10px;
     padding: 5px;
-    box-shadow: 0 0 5px black;
-    border-radius: 10px;
-    overflow: scroll;
+    background: #658181;
+    border-radius: 5px;
 }
 
-.card-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .card-group {
-    flex: 1 1 300px;
-    height: 60px;
+    color: black;
     display: flex;
-    margin: 5px;
+    margin: 3px;
     justify-content: space-between;
-    border-radius: 10px;
-    box-shadow: 5px 5px rgb(105, 105, 105);
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+    padding: 5px;
 }
 
 .card-left {
@@ -105,24 +110,15 @@ ul {
 }
 
 .card-checkbox {
-    margin: 15px;
-}
-
-.card-text {
-    overflow: scroll;
-    height: 55px;
+    align-self: start;
+    margin: 5px;
 }
 
 .card-title {
-    padding: 2px;
-    padding-left:5px;
-    position: sticky;
-    top: 0;
-    display: flex;
-    width: 100%;
-    background: white;
+    padding: 1px clamp(1px, 2vw, 15px);
     font-weight: 700;
-    font-size: 1rem
+    font-size: 1rem;
+    margin-bottom: 3px;
 }
 
 .card-description {
@@ -133,9 +129,9 @@ ul {
 }
 
 .card-button {
-    align-self: center;
+    align-self: top;
     display: flex;
-    padding: clamp(1px, 2vw, 15px);
+    padding: 0 clamp(1px, 2vw, 15px);
     gap: clamp(0.5rem, 2vw, 1.5rem);
 }
 
@@ -146,9 +142,10 @@ ul {
     max-width: 500px;
     padding: 15px;
     margin: 20px auto;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0 0 5px black;
-    background: rgb(215, 215, 215);;
+    background: #658181;
+    ;
 }
 
 .addTask-group {
@@ -157,24 +154,24 @@ ul {
     margin: 0 auto;
 }
 
-.addTask-group label{
+.addTask-group label {
     padding: 5px;
 }
 
-.addTask-group input{
+.addTask-group input {
     border-radius: 5px;
     padding: 5px;
     font-weight: 700;
 }
 
-.addTask-group textarea{
+.addTask-group textarea {
     height: 60px;
     border-radius: 5px;
     resize: none;
     padding: 5px;
 }
 
-.addTask-group-button{
+.addTask-group-button {
     margin-top: 15px;
     display: flex;
     justify-content: center;
@@ -183,18 +180,20 @@ ul {
 
 .addTask-button {
     width: 150px;
+    color: black;
     text-decoration: none;
     text-align: center;
-    background: gray;
+    background: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     font-weight: 700;
     font-size: 1rem;
-    box-shadow: 5px 5px rgb(75, 75, 75);
+    box-shadow: 0 0 5px black;
 }
+
 .addTask-button:hover {
     background: rgb(165, 165, 165);
 }
 
-/* End Nouyvelle tâche */
+/* End Nouvelle tâche */

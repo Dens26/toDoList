@@ -1,5 +1,5 @@
 // import * as Functions from "../modules/functions.js";
-import {LoadTask, UpdateDisplay} from "../modules/functions.js";
+import { LoadTask, UpdateDisplay, UpdateCardHeight } from "../modules/functions.js";
 
 const taskTab = [];
 LoadTask(taskTab);
@@ -42,4 +42,9 @@ for (let i = 0; i < cardGroup.length; i++) {
     cardGroup[i].children[1].children[1].addEventListener("click", () => {
         sessionStorage.setItem("Edit", JSON.stringify(taskTab[i]));
     })
+
+    window.addEventListener('resize', (event) => {
+        UpdateCardHeight(taskTab);
+    });
+
 }
