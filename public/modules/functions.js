@@ -27,54 +27,76 @@ export function LoadTask(taskTab) {
     const task = JSON.parse(localStorage.getItem("Task")) || [];
     ul_cardContainer.textContent = "";
 
+    let nbr = 0;
     for (let i = 0; i < task.length; i++) {
         // Création de la carte
         const li_cardGroup = createCard(task[i]);
         ul_cardContainer.appendChild(li_cardGroup);
         taskTab.push(task[i]);
+        // Mise à jour de l'affichage
+        if (!li_cardGroup.children[0].children[0].checked) nbr++;
+        UpdateDisplay(task, li_cardGroup, nbr);
     }
-    // Mise à jour de l'affichage
-    UpdateDisplay(taskTab);
+    // Met à jour le nombre de tâches restante
+    ShowTaskNumber(task, nbr);
 }
 
 /**
  * Fonction pour mettre à jour l'affichage de la page HTML en fonction des tâches.
  * @param {Array} taskTab - Tableau contenant les tâches.
  */
-export function UpdateDisplay(taskTab) {
-    // Références des objets du DOM
-    const cardGroup = document.querySelectorAll(".card-group");
-    let nbr = taskTab.length;
-
+export function UpdateDisplay(task, card, nbr) {
+    // let nbr = cardGroup.length;
     // Vérifie les cases à cocher et met à jour l'affichage.
-    for (let i = 0; i < taskTab.length; i++) {
-        if (cardGroup[i].children[0].children[0].checked) {
-            UpdateCheckbox(cardGroup[i], 1);
-            nbr--;
-        }
-        else {
-            UpdateCheckbox(cardGroup[i], 0);
-        }
+    if (card.children[0].children[0].checked) {
+        UpdateCheckbox(card, 1);
+        nbr--;
     }
-    // Affiche le nombre de tâches restantes.
-    ShowTaskNumber(taskTab, nbr);
+    else {
+        UpdateCheckbox(card, 0);
+        nbr++;
+    }
+    // Met à jour le nombre de tâches restante
+    ShowTaskNumber(task, nbr);
 
     // Met à jour la hauteur des cartes en fonction de leur contenu.
-    UpdateCardHeight(taskTab);
+    UpdateCardHeight(card);
 }
 
-export function UpdateCardHeight(taskTab) {
-    const cardGroup = document.querySelectorAll(".card-group");
-    // Ajuste la taille de la carte
-    for (let i = 0; i < taskTab.length; i++) {
-        cardGroup[i].style.height = "50px";
-        if (cardGroup[i].scrollHeight > cardGroup[i].offsetHeight) {
-            const marge = parseInt(cardGroup[i].scrollHeight / 50 + 1);
-            cardGroup[i].style.height = `${(marge * 50) + marge * (marge + 1)}px`;
-            cardGroup[i].style.gridRow = `span ${marge}`;
-        }
+/**
+ * Affiche le nombre de tâches restantes.
+ * @param {Array} task - Tableau contenant les tâches à afficher.
+ * @param {number} nbr - Nombre de tâches restantes à effectuer.
+ */
+export function ShowTaskNumber(task, nbr) {
+    document.querySelector(".task-info").innerHTML =
+        task.length == 0 ? `Aucune tâche pour le moment` :
+            nbr <= 1 ? `il vous reste <span class="task-nbr">${nbr}</span> tâche !` :
+                `il vous reste <span class="task-nbr">${nbr}</span> tâches !`;
+}
+
+/**
+ * Ajuste la hauteur de la carte pour s'adapter au contenu.
+ * @param {HTMLElement} card - carte à mettre à jour.
+ */
+export function UpdateCardHeight(card) {
+    // Définit la hauteur initiale de la carte à 50px
+    card.style.height = "50px";
+
+    // Vérifie si le contenu dépasse la hauteur de la carte
+    if (card.scrollHeight > card.offsetHeight) {
+
+        // Calcule le nombre de lignes nécessaires pour afficher le contenu
+        const numRow = parseInt(card.scrollHeight / 50 + 1);
+
+        // Calcule la nouvelle hauteur de la carte en fonction du nombre de lignes nécessaires
+        card.style.height = `${(numRow * 50) + numRow * (numRow + 1)}px`;
+
+        // Met à jour la propriété de la grille pour s'étendre sur le nombre de lignes nécessaires
+        card.style.gridRow = `span ${numRow}`;
     }
 }
+
 /**
  * Fonction pour créer une carte représentant une tâche.
  * @param {Object} task - Objet représentant une tâche.
@@ -116,74 +138,78 @@ function createCard(task) {
 }
 
 /**
- * Fonction de création de boutons
- * @param {string} buttonName 
- * @param {string} buttonTitle 
- * @param {string} buttonSrc 
- * @returns 
+ * Crée un bouton avec le nom, le titre et l'icône spécifiés.
+ * @param {string} buttonName - Nom de la classe CSS du bouton.
+ * @param {string} buttonTitle - Texte qui apparaîtra au survol du bouton.
+ * @param {string} buttonSrc - Nom du fichier SVG de l'icône du bouton
+ * @returns {HTMLAnchorElement} - Élément de lien ancré (balise <a>) créé.
  */
 function CreateButton(buttonName, buttonTitle, buttonSrc) {
+    // Crée l'élément et sa classe
     const a_card = document.createElement("a");
     a_card.className = buttonName;
-    a_card.href = buttonTitle == "Modifier" ? "edit-form.html" : "#";
+
+    // Définit le lien de destination en fonction du titre du bouton
+    a_card.href = buttonTitle == "Modifier" ? "form.html?value=edit" : "#";
     a_card.title = buttonTitle;
 
+    // Crée un élément d'image pour l'icône du bouton
     const a_card_img = document.createElement('img');
     a_card_img.src = "../icons/" + buttonSrc + ".svg";
     a_card_img.alt = "Logo " + buttonName;
+
+    // Ajoute l'image à l'élément
     a_card.appendChild(a_card_img);
 
+    // Retourne l'élément créé
     return a_card;
 }
 
 /**
- * Fonction de création de contenu texte
- * @param {string} paramClass 
- * @param {string} paramContent 
- * @returns 
+ * Crée un élément de paragraphe
+ * @param {string} paramClass - Nom de la classe
+ * @param {string} paramContent - Contenu du paragraphe.
+ * @returns {HTMLParagraphElement} - Élément de paragraphe (balise <p>) créé.
  */
 function CreateParagraph(paramClass, paramContent) {
+    // Crée l'élément de paragraphe, sa classe et son contenu
     const p = document.createElement('p');
     p.className = paramClass;
     p.textContent = paramContent;
 
+    // Retourne l'élément créé
     return p;
 }
 /**
- * Fonction de création de case à cocher
- * @param {Object} task 
- * @param {string} chckElement 
- * @param {string} chckClass 
- * @param {string} chckType 
- * @returns 
+ * Crée un élément de case à cocher
+ * @param {Object} task - tâche
+ * @param {string} chckElement - Nom de l'élément à créer.
+ * @param {string} chckClass - Nom de la classe CSS.
+ * @param {string} chckType - Type de la case à cocher
+ * @returns {HTMLInputElement} - Élément de case à cocher (input de type checkbox)
  */
 function CreateCheckbox(task, chckElement, chckClass, chckType) {
+    // Crée l'élément, sa classe et son type
     const input_cardCheckbox = document.createElement(chckElement);
     input_cardCheckbox.className = chckClass;
     input_cardCheckbox.type = chckType;
+
+    // Coche la case à cocher si la tâche est terminée
     input_cardCheckbox.checked = task.finished;
 
+    // Retourne l'élément
     return input_cardCheckbox;
 }
 
 /**
- * Fonction de mise à jour des checkbox
- * @param {Object} card 
- * @param {number} index 
+ * Met à jour l'apparence et l'interaction des éléments de la carte en fonction de l'état de la case à cocher.
+ * @param {Object} card - Objet représentant l'élément de carte à mettre à jour.
+ * @param {number} index - Indice spécifiant l'état de la case à cocher. Valeur possible (0,1)
  */
-const checkboxValueTab = [["white", "gray"], ["none", "line-through"], ["auto", "none"], ["visible", "hidden"]];
+const checkboxValueTab = [["white", "gray"], ["none", "line-through"], ["visible", "hidden"]];
 function UpdateCheckbox(card, index) {
-    card.style.background = checkboxValueTab[0][index];
-    card.children[0].children[1].children[0].style.background = checkboxValueTab[0][index];
-    card.children[0].children[1].children[0].style.textDecoration = checkboxValueTab[1][index];
-    card.children[0].children[1].children[1].style.textDecoration = checkboxValueTab[1][index];
-    card.children[1].children[1].style.pointerEvents = checkboxValueTab[2][index];
-    card.children[1].children[1].style.visibility = checkboxValueTab[3][index];
-}
-
-function ShowTaskNumber(taskTab, nbr) {
-    document.querySelector(".task-info").innerHTML =
-        taskTab.length == 0 ? `Aucune tâche pour le moment` :
-            nbr <= 1 ? `il vous reste <span class="task-nbr">${nbr}</span> tâche !` :
-                `il vous reste <span class="task-nbr">${nbr}</span> tâches !`;
+    card.style.background = checkboxValueTab[0][index]; // background
+    card.children[0].children[1].children[0].style.textDecoration = checkboxValueTab[1][index]; // Titre de la tâche
+    card.children[0].children[1].children[1].style.textDecoration = checkboxValueTab[1][index]; // Description de la tâche
+    card.children[1].children[1].style.visibility = checkboxValueTab[2][index]; // Visibilité du bouton
 }

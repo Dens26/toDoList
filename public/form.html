@@ -7,7 +7,7 @@
     <meta name="description" content="To do list, Système de gestion de tâches, formulaire de création d'une tache">
     <link rel="icon" href="./favicon/android-chrome-512x512.png">
     <link rel="stylesheet" href="./styles/main.css">
-    <script src="./scripts/add-form.js" type="module" defer></script>
+    <script src="./scripts/form.js" type="module" defer></script>
     <title>Formulaire de création d'une tâche</title>
 </head>
 
@@ -15,18 +15,18 @@
     <header class="form-header">
         <h1 class="form-header-title">Nouvelle tâche</h1>
     </header>
-    <form class="form-addTask" action="index.html">
-        <div class="addTask-group">
+    <form class="form-submit" action="index.html">
+        <div class="submit-group">
             <label for="name" title="Nom">Nom</label>
             <input type="text" title="nom" id="name" placeholder="Nom" required>
         </div>
-        <div class="addTask-group">
+        <div class="submit-group">
             <label for="description" title="Description">Description</label>
             <textarea title="description" id="description" placeholder="Description" required></textarea>
         </div>
-        <div class="addTask-group-button">
-            <button class="addTask-button" type="submit">Ajouter</button>
-            <a href="index.html" class="addTask-button" title="Annuler">Annuler</a>
+        <div class="submit-group-button">
+            <button class="submit-button" type="submit">Ajouter</button>
+            <a href="index.html" class="submit-button" title="Annuler">Annuler</a>
         </div>
     </form>
 </body>

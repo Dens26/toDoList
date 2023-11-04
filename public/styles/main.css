@@ -10,7 +10,7 @@
 body {
     Font-family: Verdana, Geneva, sans-serif;
     color: white;
-    max-width: 1500px;
+    max-width: 1200px;
     margin: 0 auto;
     background: #034141;
 }
@@ -136,8 +136,11 @@ ul {
 }
 
 /* End Cartes */
-/* Nouvelle tâche */
-.form-addTask {
+/* Formulaire */
+.form-header-title{
+    text-align: center;
+}
+.form-submit {
     width: 80vw;
     max-width: 500px;
     padding: 15px;
@@ -148,37 +151,37 @@ ul {
     ;
 }
 
-.addTask-group {
+.submit-group {
     display: flex;
     flex-flow: column;
     margin: 0 auto;
 }
 
-.addTask-group label {
+.submit-group label {
     padding: 5px;
 }
 
-.addTask-group input {
+.submit-group input {
     border-radius: 5px;
     padding: 5px;
     font-weight: 700;
 }
 
-.addTask-group textarea {
+.submit-group textarea {
     height: 60px;
     border-radius: 5px;
     resize: none;
     padding: 5px;
 }
 
-.addTask-group-button {
+.submit-group-button {
     margin-top: 15px;
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
 
-.addTask-button {
+.submit-button {
     width: 150px;
     color: black;
     text-decoration: none;
@@ -192,8 +195,8 @@ ul {
     box-shadow: 0 0 5px black;
 }
 
-.addTask-button:hover {
+.submit-button:hover {
     background: rgb(165, 165, 165);
 }
 
-/* End Nouvelle tâche */
+/* End Formulaire */
