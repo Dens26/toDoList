@@ -31,6 +31,7 @@ for (let i = 0; i < cardGroup.length; i++) {
         // Mise à jour de l'affichage
         UpdateDisplay(taskTab, cardGroup[i], parseInt(document.querySelector(".task-nbr").textContent));
     })
+
     // Ecouteurs sur les boutons "Supprimer"
     deleteButton.addEventListener("click", () => {
         if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")) {
@@ -42,10 +43,12 @@ for (let i = 0; i < cardGroup.length; i++) {
             localStorage.setItem("Task", JSON.stringify(taskTab));
         }
     })
+
     // Ecouteurs sur les boutons "Modifier"
     editButton.addEventListener("click", () => {
         sessionStorage.setItem("Edit", JSON.stringify(taskTab[i]));
     })
+    
     // Ecouteur sur le changement de taille de la fenêtre (responsive)
     window.addEventListener('resize', (event) => {
         UpdateCardHeight(cardGroup[i]);
