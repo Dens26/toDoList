@@ -24,7 +24,6 @@ function dataVerification(filePath, callback) {
             return callback({ error: 'Aucune donnée de tâche disponible.' });
 
         // Retourne la donnée si aucune erreur n'a été relevé
-        console.log(taskTab);
         return callback( null, taskTab);
     })
 }

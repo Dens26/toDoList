@@ -1,3 +1,4 @@
+import {fetchLoadTaskTab, fetchSaveTaskTab} from "./server-function.js";
 
 /**
  * Fonction pour créer un identifiant unique pour les tâches.
@@ -17,40 +18,8 @@ export function createId(taskTab) {
         return 0;
 }
 
-async function fetchLoadTaskTab(_url) {
-    const url = `http://localhost:5000/${_url}`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok)
-            throw new Error(`Erreur ${response.status}`);
-        else
-            return await response.json();
-    }
-    catch (error) {
-        return -1;
-    }
-}
-async function fetchSaveTaskTab(taskTab, _url) {
-    const url = `http://localhost:5000/${_url}`;
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(taskTab)
-        })
-        if (!response.ok)
-            throw new Error(`Erreur ${response.status}`);
-        await response.json();
-    }
-    catch (error) {
-        return -1;
-    }
-}
-
 /**
- * Fonction pour charger les tâches depuis le stockage local
+ * Fonction pour charger les tâches depuis le fichier coté serveur
  * et mettre à jour l'interface utilisateur.
  * @param {Array} taskTab - Tableau contenant les tâches.
  */
@@ -80,6 +49,10 @@ export async function LoadTaskTab(pageName) {
     return taskTab;
 }
 
+/**
+ * Fonction pour Enregistrer les tâches dans le fichier coté serveur
+ * @param {Array} taskTab - Tableau contenant les tâches
+ */
 export async function SaveTaskTab(taskTab) {
     const task = await fetchSaveTaskTab(taskTab, "taskTab");
 }
