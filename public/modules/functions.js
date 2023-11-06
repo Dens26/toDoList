@@ -1,4 +1,4 @@
-import {fetchLoadTaskTab, fetchSaveTaskTab} from "./server-function.js";
+import { fetchLoadTaskTab, fetchSaveTaskTab } from "./server-function.js";
 
 /**
  * Fonction pour créer un identifiant unique pour les tâches.
@@ -26,8 +26,10 @@ export function createId(taskTab) {
 export async function LoadTaskTab(pageName) {
     const taskTab = [];
     const ul_cardContainer = document.querySelector(".card-container");
-    // const task = JSON.parse(localStorage.getItem("Task")) || [];
     const task = await fetchLoadTaskTab("taskTab");
+    if(task.toString().substr(0,10) == 'Error: 500')
+        return task;
+
     if (pageName == "index.html")
         ul_cardContainer.textContent = "";
 
@@ -38,6 +40,7 @@ export async function LoadTaskTab(pageName) {
         taskTab.push(task[i]);
         if (pageName == "index.html") {
             ul_cardContainer.appendChild(li_cardGroup);
+
             // Mise à jour de l'affichage
             if (!li_cardGroup.children[0].children[0].checked) nbr++;
             UpdateDisplay(task, li_cardGroup, nbr);
@@ -46,6 +49,7 @@ export async function LoadTaskTab(pageName) {
     // Met à jour le nombre de tâches restante
     if (pageName == "index.html")
         ShowTaskNumber(task, nbr);
+    // Retourne le tableau de tâche
     return taskTab;
 }
 
@@ -54,7 +58,7 @@ export async function LoadTaskTab(pageName) {
  * @param {Array} taskTab - Tableau contenant les tâches
  */
 export async function SaveTaskTab(taskTab) {
-    const task = await fetchSaveTaskTab(taskTab, "taskTab");
+    await fetchSaveTaskTab(taskTab, "taskTab");
 }
 
 /**
@@ -62,7 +66,6 @@ export async function SaveTaskTab(taskTab) {
  * @param {Array} taskTab - Tableau contenant les tâches.
  */
 export function UpdateDisplay(task, card, nbr) {
-    // let nbr = cardGroup.length;
     // Vérifie les cases à cocher et met à jour l'affichage.
     if (card.children[0].children[0].checked) {
         UpdateCheckbox(card, 1);

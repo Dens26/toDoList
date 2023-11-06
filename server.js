@@ -11,10 +11,10 @@ app.use(express.json());
 // Affichage des tâche
 app.get('/taskTab', (query, result) => {
     dataVerification(path.join(__dirname, 'taskTab.json'), (error, taskTab) => {
-        if (error)
-            result.status(500).json(error);
-
-        result.status(200).json(taskTab);
+        if (error){
+            return result.status(500).json(error);
+        }
+        return result.status(200).json(taskTab);
     })
 })
 

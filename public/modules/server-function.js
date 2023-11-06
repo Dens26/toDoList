@@ -1,19 +1,22 @@
 /**
  * Fonction pour récupérer des données.
  * @param {string} _url - url du chemin de récupération des données
- * @returns
+ * @returns retourne Tableau de tâche ou -1 en cas d'échec
  */
 export async function fetchLoadTaskTab(_url) {
     const url = `http://localhost:5000/${_url}`;
     try {
         const response = await fetch(url);
-        if (!response.ok)
-            throw new Error(`Erreur ${response.status}`);
-        else
+        if (response.ok)
             return await response.json();
+        else
+        {
+            const error = await response.json();
+            throw new Error(`${response.status} : ${error}`);
+        }
     }
     catch (error) {
-        return -1;
+        return error;
     }
 }
 
@@ -21,7 +24,7 @@ export async function fetchLoadTaskTab(_url) {
  * Fonction qui effectue une requête POST pour enregistrer les données.
  * @param {Array} taskTab - Le tableau de tâche à enregistrer.
  * @param {string} _url - url du chemin d'enregistrement des données
- * @returns
+ * @returns retourne -1 en cas d'échec
  */
 export async function fetchSaveTaskTab(taskTab, _url) {
     const url = `http://localhost:5000/${_url}`;
@@ -33,11 +36,10 @@ export async function fetchSaveTaskTab(taskTab, _url) {
             },
             body: JSON.stringify(taskTab)
         })
-        if (!response.ok)
-            throw new Error(`Erreur ${response.status}`);
-        await response.json();
+        if (response.ok)
+            await response.json();
     }
-    catch (error) {
+    catch {
         return -1;
     }
 }

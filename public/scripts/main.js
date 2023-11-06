@@ -1,9 +1,12 @@
 // Fonctions nécessaires
-import { LoadTaskTab, SaveTaskTab, UpdateDisplay, UpdateCardHeight, ShowTaskNumber } from "../modules/functions.js";
+import { LoadTaskTab, SaveTaskTab, UpdateDisplay, UpdateCardHeight } from "../modules/functions.js";
 
 
 // Chargement des tâches dans la constante taskTab[]
 const taskTab = await LoadTaskTab("index.html");
+if (taskTab.toString().substr(0, 10) == 'Error: 500')
+    document.querySelector('.error').textContent = taskTab;
+
 // Référence DOM
 const cardGroup = document.querySelectorAll(".card-group");
 
@@ -20,8 +23,7 @@ for (let i = 0; i < cardGroup.length; i++) {
         // Modification de la valeur du checkbox dans le tableau de tâche
         taskTab[i].finished = cardGroup[i].children[0].children[0].checked;
 
-        // Enregistrement dans le localStorage
-        // localStorage.setItem("Task", JSON.stringify(taskTab));
+        // Enregistrement sur le serveur
         SaveTaskTab(taskTab);
         if (taskTab[i].finished) {
             localStorage.setItem("Finished", JSON.stringify(taskTab[i]));
@@ -36,9 +38,8 @@ for (let i = 0; i < cardGroup.length; i++) {
             // Ajout d'une clé dernier supprimé
             localStorage.setItem("deleted", JSON.stringify(taskTab[i]));
 
-            // Suppression de la tâche
+            // Suppression de la tâche du serveur
             taskTab.splice(i, 1);
-            // localStorage.setItem("Task", JSON.stringify(taskTab));
             SaveTaskTab(taskTab);
             location.reload();
         }

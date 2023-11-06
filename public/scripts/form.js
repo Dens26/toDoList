@@ -10,8 +10,9 @@ const inputDescription = document.getElementById("description");
 // Récupération du tableau de tâche et de la tâche à modifier
 const edit = JSON.parse(sessionStorage.getItem("Edit"));
 // Récupération du tableau
-const taskTab = await LoadTaskTab("form.html");
-console.log(taskTab);
+let taskTab = await LoadTaskTab("form.html");
+if (taskTab.toString().substr(0, 10) == 'Error: 500')
+    taskTab = [];
 
 // Récupération du bouton déclencheur du formulaire
 let params = new URLSearchParams(document.location.search);
@@ -37,7 +38,6 @@ submitButton[0].addEventListener("click", () => {
             localStorage.setItem("Added", JSON.stringify(task));
 
             taskTab.push(task);
-            // localStorage.setItem("Task", JSON.stringify(taskTab));
             SaveTaskTab(taskTab);
         }
         else if (params.get('value') == "edit") {
@@ -50,7 +50,6 @@ submitButton[0].addEventListener("click", () => {
 
             // Ajout de la tâche dans les "Updated" et "Task"
             localStorage.setItem("Updated", JSON.stringify(task));
-            // localStorage.setItem("Task", JSON.stringify(taskTab));
             SaveTaskTab(taskTab);
         }
     }
