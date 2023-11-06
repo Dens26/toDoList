@@ -1,5 +1,5 @@
 // Fonctions et classes nécessaires
-import { createId } from "../modules/functions.js";
+import { createId, SaveTaskTab, LoadTaskTab } from "../modules/functions.js";
 import { TaskObject } from "../modules/class.js";
 
 // Référence DOM
@@ -10,7 +10,8 @@ const inputDescription = document.getElementById("description");
 // Récupération du tableau de tâche et de la tâche à modifier
 const edit = JSON.parse(sessionStorage.getItem("Edit"));
 // Récupération du tableau
-const taskTab = JSON.parse(localStorage.getItem("Task")) || [];
+const taskTab = await LoadTaskTab("form.html");
+console.log(taskTab);
 
 // Récupération du bouton déclencheur du formulaire
 let params = new URLSearchParams(document.location.search);
@@ -36,7 +37,8 @@ submitButton[0].addEventListener("click", () => {
             localStorage.setItem("Added", JSON.stringify(task));
 
             taskTab.push(task);
-            localStorage.setItem("Task", JSON.stringify(taskTab));
+            // localStorage.setItem("Task", JSON.stringify(taskTab));
+            SaveTaskTab(taskTab);
         }
         else if (params.get('value') == "edit") {
             // Récupération de la tâche à modifier
@@ -48,7 +50,8 @@ submitButton[0].addEventListener("click", () => {
 
             // Ajout de la tâche dans les "Updated" et "Task"
             localStorage.setItem("Updated", JSON.stringify(task));
-            localStorage.setItem("Task", JSON.stringify(taskTab));
+            // localStorage.setItem("Task", JSON.stringify(taskTab));
+            SaveTaskTab(taskTab);
         }
     }
 })

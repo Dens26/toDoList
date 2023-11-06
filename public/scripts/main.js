@@ -1,12 +1,9 @@
 // Fonctions nécessaires
-import { LoadTask, UpdateDisplay, UpdateCardHeight, ShowTaskNumber } from "../modules/functions.js";
+import { LoadTaskTab, SaveTaskTab, UpdateDisplay, UpdateCardHeight, ShowTaskNumber } from "../modules/functions.js";
 
-// Tableau de tâches
-const taskTab = [];
 
-// Chargement des tâches
-LoadTask(taskTab);
-
+// Chargement des tâches dans la constante taskTab[]
+const taskTab = await LoadTaskTab("index.html");
 // Référence DOM
 const cardGroup = document.querySelectorAll(".card-group");
 
@@ -24,7 +21,8 @@ for (let i = 0; i < cardGroup.length; i++) {
         taskTab[i].finished = cardGroup[i].children[0].children[0].checked;
 
         // Enregistrement dans le localStorage
-        localStorage.setItem("Task", JSON.stringify(taskTab));
+        // localStorage.setItem("Task", JSON.stringify(taskTab));
+        SaveTaskTab(taskTab);
         if (taskTab[i].finished) {
             localStorage.setItem("Finished", JSON.stringify(taskTab[i]));
         }
@@ -40,7 +38,9 @@ for (let i = 0; i < cardGroup.length; i++) {
 
             // Suppression de la tâche
             taskTab.splice(i, 1);
-            localStorage.setItem("Task", JSON.stringify(taskTab));
+            // localStorage.setItem("Task", JSON.stringify(taskTab));
+            SaveTaskTab(taskTab);
+            location.reload();
         }
     })
 
@@ -48,10 +48,9 @@ for (let i = 0; i < cardGroup.length; i++) {
     editButton.addEventListener("click", () => {
         sessionStorage.setItem("Edit", JSON.stringify(taskTab[i]));
     })
-    
+
     // Ecouteur sur le changement de taille de la fenêtre (responsive)
     window.addEventListener('resize', (event) => {
         UpdateCardHeight(cardGroup[i]);
     });
-
 }

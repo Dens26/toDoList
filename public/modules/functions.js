@@ -17,28 +17,71 @@ export function createId(taskTab) {
         return 0;
 }
 
+async function fetchLoadTaskTab(_url) {
+    const url = `http://localhost:5000/${_url}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok)
+            throw new Error(`Erreur ${response.status}`);
+        else
+            return await response.json();
+    }
+    catch (error) {
+        return -1;
+    }
+}
+async function fetchSaveTaskTab(taskTab, _url) {
+    const url = `http://localhost:5000/${_url}`;
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(taskTab)
+        })
+        if (!response.ok)
+            throw new Error(`Erreur ${response.status}`);
+        await response.json();
+    }
+    catch (error) {
+        return -1;
+    }
+}
+
 /**
  * Fonction pour charger les tâches depuis le stockage local
  * et mettre à jour l'interface utilisateur.
  * @param {Array} taskTab - Tableau contenant les tâches.
  */
-export function LoadTask(taskTab) {
+export async function LoadTaskTab(pageName) {
+    const taskTab = [];
     const ul_cardContainer = document.querySelector(".card-container");
-    const task = JSON.parse(localStorage.getItem("Task")) || [];
-    ul_cardContainer.textContent = "";
+    // const task = JSON.parse(localStorage.getItem("Task")) || [];
+    const task = await fetchLoadTaskTab("taskTab");
+    if (pageName == "index.html")
+        ul_cardContainer.textContent = "";
 
     let nbr = 0;
     for (let i = 0; i < task.length; i++) {
         // Création de la carte
         const li_cardGroup = createCard(task[i]);
-        ul_cardContainer.appendChild(li_cardGroup);
         taskTab.push(task[i]);
-        // Mise à jour de l'affichage
-        if (!li_cardGroup.children[0].children[0].checked) nbr++;
-        UpdateDisplay(task, li_cardGroup, nbr);
+        if (pageName == "index.html") {
+            ul_cardContainer.appendChild(li_cardGroup);
+            // Mise à jour de l'affichage
+            if (!li_cardGroup.children[0].children[0].checked) nbr++;
+            UpdateDisplay(task, li_cardGroup, nbr);
+        }
     }
     // Met à jour le nombre de tâches restante
-    ShowTaskNumber(task, nbr);
+    if (pageName == "index.html")
+        ShowTaskNumber(task, nbr);
+    return taskTab;
+}
+
+export async function SaveTaskTab(taskTab) {
+    const task = await fetchSaveTaskTab(taskTab, "taskTab");
 }
 
 /**
