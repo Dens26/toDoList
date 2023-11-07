@@ -1,5 +1,5 @@
 // Importation des fonction nécessaire pour l'accés au serveur
-import { fetchLoadTaskTab, fetchSaveTaskTab } from "./server-function.js";
+import { fetchLoadTaskTab, fetchSaveTaskTab, fetchDeleteTaskTab } from "./server-function.js";
 
 //#region Fonctions externes
 /**
@@ -29,7 +29,7 @@ export async function LoadTaskTab(pageName) {
     const taskTab = [];
     const ul_cardContainer = document.querySelector(".card-container");
     const task = await fetchLoadTaskTab("taskTab");
-    if(task.toString().substr(0,10) == 'Error: 500')
+    if (task.toString().substr(0, 10) == 'Error: 500')
         return task;
 
     if (pageName == "index.html")
@@ -44,7 +44,8 @@ export async function LoadTaskTab(pageName) {
             ul_cardContainer.appendChild(li_cardGroup);
 
             // Mise à jour de l'affichage
-            if (!li_cardGroup.children[0].children[0].checked) nbr++;
+            if (!li_cardGroup.children[0].children[0].checked)
+                nbr++;
             UpdateDisplay(task, li_cardGroup, nbr);
         }
     }
@@ -62,6 +63,10 @@ export async function LoadTaskTab(pageName) {
 export async function SaveTaskTab(taskTab) {
     await fetchSaveTaskTab(taskTab, "taskTab");
 }
+export async function DeleteTaskTab(taskId) {
+    console.log(taskId);
+    await fetchDeleteTaskTab(taskId, "taskTab");
+}
 
 /**
  * Fonction pour mettre à jour l'affichage de la page HTML en fonction des tâches.
@@ -69,14 +74,10 @@ export async function SaveTaskTab(taskTab) {
  */
 export function UpdateDisplay(task, card, nbr) {
     // Vérifie les cases à cocher et met à jour l'affichage.
-    if (card.children[0].children[0].checked) {
-        UpdateCheckbox(card, 1);
-        nbr--;
-    }
-    else {
-        UpdateCheckbox(card, 0);
-        nbr++;
-    }
+    let index = card.children[0].children[0].checked ? 1 : 0;
+    nbr = card.children[0].children[0].checked ? nbr - 1 : nbr + 1;
+    UpdateCheckbox(card, index);
+
     // Met à jour le nombre de tâches restante
     ShowTaskNumber(task, nbr);
 

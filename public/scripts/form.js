@@ -32,12 +32,7 @@ submitButton[0].addEventListener("click", () => {
             let id = createId(taskTab);
 
             // Nouvelle variables task
-            let task = new TaskObject(id, inputName.value, inputDescription.value, false);
-
-            // Ajout de la tâche dans les "Added" et "Task"
-            localStorage.setItem("Added", JSON.stringify(task));
-
-            taskTab.push(task);
+            taskTab.push(new TaskObject(id, inputName.value, inputDescription.value, false));
             SaveTaskTab(taskTab);
         }
         else if (params.get('value') == "edit") {
@@ -48,8 +43,7 @@ submitButton[0].addEventListener("click", () => {
             task.name = inputName.value;
             task.description = inputDescription.value;
 
-            // Ajout de la tâche dans les "Updated" et "Task"
-            localStorage.setItem("Updated", JSON.stringify(task));
+            // Enregistrement
             SaveTaskTab(taskTab);
         }
     }

@@ -7,7 +7,7 @@ const fs = require("fs");
  * @param {function} callback - Callback à appeler une fois l'enregistrement terminé.
  * @returns {callback} - Retourne les données ou l'erreur rencontrée
  */
-function dataVerification(filePath, callback) {
+function dataLoad(filePath, callback) {
     // Le fichier n'existe pas
     if (!fs.existsSync(filePath))
         return callback("Le fichier de données n'éxiste pas.", null);
@@ -25,11 +25,6 @@ function dataVerification(filePath, callback) {
         catch (error) {
             return callback("Fichier non conforme.", null);
         }
-
-        /****** VERIFICATION DESACTIVEE CAR GEREE AU NIVEAU DU CLIENT ******/
-        // // Le tableau ne contient pas de données
-        // if (!Array.isArray(taskTab) || taskTab.length == 0)
-        //     return callback("Vous n'avez aucune tâche en cours.", null);
 
         // Retourne la donnée si aucune erreur n'a été relevé
         return callback(null, taskTab);
@@ -54,6 +49,6 @@ function dataSave(filePath, taskTab, callback) {
 }
 
 module.exports = {
-    dataVerification,
+    dataLoad,
     dataSave
 }

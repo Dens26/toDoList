@@ -1,5 +1,5 @@
 // Fonctions nécessaires
-import { LoadTaskTab, SaveTaskTab, UpdateDisplay, UpdateCardHeight } from "../modules/functions.js";
+import { LoadTaskTab, SaveTaskTab, UpdateDisplay, UpdateCardHeight, DeleteTaskTab } from "../modules/functions.js";
 
 
 // Chargement des tâches dans la constante taskTab[]
@@ -29,9 +29,7 @@ for (let i = 0; i < cardGroup.length; i++) {
 
         // Enregistrement sur le serveur
         SaveTaskTab(taskTab);
-        if (taskTab[i].finished) {
-            localStorage.setItem("Finished", JSON.stringify(taskTab[i]));
-        }
+        
         // Mise à jour de l'affichage
         UpdateDisplay(taskTab, cardGroup[i], parseInt(document.querySelector(".task-nbr").textContent));
     })
@@ -39,12 +37,8 @@ for (let i = 0; i < cardGroup.length; i++) {
     // Ecouteurs sur les boutons "Supprimer"
     deleteButton.addEventListener("click", () => {
         if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")) {
-            // Ajout d'une clé dernier supprimé
-            localStorage.setItem("deleted", JSON.stringify(taskTab[i]));
-
             // Suppression de la tâche du serveur
-            taskTab.splice(i, 1);
-            SaveTaskTab(taskTab);
+            DeleteTaskTab(taskTab[i].id);
             location.reload();
         }
     })

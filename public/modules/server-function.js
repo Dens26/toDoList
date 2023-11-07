@@ -16,7 +16,7 @@ export async function fetchLoadTaskTab(_url) {
         }
     }
     catch (error) {
-        return error;
+        throw error;
     }
 }
 
@@ -44,7 +44,27 @@ export async function fetchSaveTaskTab(taskTab, _url) {
         }
     }
     catch (error) {
-        return error;
+        throw error;
+    }
+}
+
+export async function fetchDeleteTaskTab(taskId, _url){
+    console.log("ici");
+    const url = `http://localhost:5000/${_url}/${taskId}`;
+    console.log(url);
+    try {
+        const response = await fetch(url, {
+            method: "DELETE"
+        });
+        if (response.ok)
+            await response.json();
+        else {
+            const error = await response.json();
+            throw new Error(`${response.status} : ${error}`);
+        }
+    }
+    catch (error) {
+        throw error;
     }
 }
 //#endregion
