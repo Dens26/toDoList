@@ -14,9 +14,13 @@ const cardGroup = document.querySelectorAll(".card-group");
  * Ajout des écouteurs d'événements sur chaque groupe de cartes.
  */
 for (let i = 0; i < cardGroup.length; i++) {
+    // Ecouteurs
     const checkbox = cardGroup[i].children[0].children[0];
     const deleteButton = cardGroup[i].children[1].children[0];
     const editButton = cardGroup[i].children[1].children[1];
+
+    // Met à jour la taille de chaque tâche
+    UpdateCardHeight(cardGroup[i]);
 
     // Ecouteurs sur les checkbox
     checkbox.addEventListener("click", () => {
@@ -52,6 +56,7 @@ for (let i = 0; i < cardGroup.length; i++) {
 
     // Ecouteur sur le changement de taille de la fenêtre (responsive)
     window.addEventListener('resize', (event) => {
+        // Met à jour la taille de chaque tâche
         UpdateCardHeight(cardGroup[i]);
     });
 }
