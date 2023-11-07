@@ -1,14 +1,19 @@
+// Dépendances nécessaire
 const express = require("express");
-const { dataVerification, dataSave } = require("./dataFunctions.js");
 const path = require("path");
 
+// Fonction de gestion des données
+const { dataVerification, dataSave } = require("./dataFunctions.js");
+
+// Initialisation du serveur
 const port = process.env.PORT || 5000;
 const app = express();
-
 app.use(express.static("public"));
 app.use(express.json());
 
-// Affichage des tâche
+/**
+ * Retroune les tâche du fichier taskTab.json ou l'erreur rencontré
+ */
 app.get('/taskTab', (query, result) => {
     dataVerification(path.join(__dirname, 'taskTab.json'), (error, taskTab) => {
         if (error){
@@ -18,7 +23,9 @@ app.get('/taskTab', (query, result) => {
     })
 })
 
-// Enregistrement d'une nouvelle tâche
+/**
+ * Enregistre la donné reçu en POST dans le fichier taskTab ou l'erreur rencontré
+ */
 app.post('/taskTab', (query, result) => {
     dataVerification(path.join(__dirname, 'taskTab.json'), (error, taskTab) => {
         if (error)

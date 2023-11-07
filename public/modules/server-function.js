@@ -1,7 +1,8 @@
+//#region Fonction d'acces au serveur
 /**
- * Fonction pour récupérer des données.
+ * Fonction pour charger les données du serveur
  * @param {string} _url - url du chemin de récupération des données
- * @returns retourne Tableau de tâche ou -1 en cas d'échec
+ * @returns retourne Tableau de tâche ou l'erreur en cas d'échec
  */
 export async function fetchLoadTaskTab(_url) {
     const url = `http://localhost:5000/${_url}`;
@@ -9,8 +10,7 @@ export async function fetchLoadTaskTab(_url) {
         const response = await fetch(url);
         if (response.ok)
             return await response.json();
-        else
-        {
+        else {
             const error = await response.json();
             throw new Error(`${response.status} : ${error}`);
         }
@@ -24,7 +24,7 @@ export async function fetchLoadTaskTab(_url) {
  * Fonction qui effectue une requête POST pour enregistrer les données.
  * @param {Array} taskTab - Le tableau de tâche à enregistrer.
  * @param {string} _url - url du chemin d'enregistrement des données
- * @returns retourne -1 en cas d'échec
+ * @returns retourne l'erreur en cas d'échec
  */
 export async function fetchSaveTaskTab(taskTab, _url) {
     const url = `http://localhost:5000/${_url}`;
@@ -38,8 +38,13 @@ export async function fetchSaveTaskTab(taskTab, _url) {
         })
         if (response.ok)
             await response.json();
+        else {
+            const error = await response.json();
+            throw new Error(`${response.status} : ${error}`);
+        }
     }
-    catch {
-        return -1;
+    catch (error) {
+        return error;
     }
 }
+//#endregion

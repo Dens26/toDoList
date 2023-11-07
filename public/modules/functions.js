@@ -1,5 +1,7 @@
+// Importation des fonction nécessaire pour l'accés au serveur
 import { fetchLoadTaskTab, fetchSaveTaskTab } from "./server-function.js";
 
+//#region Fonctions externes
 /**
  * Fonction pour créer un identifiant unique pour les tâches.
  * @param {Array} taskTab - Tableau des tâches existantes.
@@ -115,7 +117,10 @@ export function UpdateCardHeight(card) {
         card.style.gridRow = `span ${numRow}`;
     }
 }
+//#endregion
 
+
+//#region Fonctions internes
 /**
  * Fonction pour créer une carte représentant une tâche.
  * @param {Object} task - Objet représentant une tâche.
@@ -232,3 +237,4 @@ function UpdateCheckbox(card, index) {
     card.children[0].children[1].children[1].style.textDecoration = checkboxValueTab[1][index]; // Description de la tâche
     card.children[1].children[1].style.visibility = checkboxValueTab[2][index]; // Visibilité du bouton
 }
+//#endregion

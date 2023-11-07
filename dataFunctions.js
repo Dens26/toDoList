@@ -1,5 +1,12 @@
+// Dépendance nécessaire
 const fs = require("fs");
 
+/**
+ * Vérifie l'existence et la validité du fichier JSON
+ * @param {string} filePath - Chemin du fichier
+ * @param {function} callback - Callback à appeler une fois l'enregistrement terminé.
+ * @returns {callback} - Retourne les données ou l'erreur rencontrée
+ */
 function dataVerification(filePath, callback) {
     // Le fichier n'existe pas
     if (!fs.existsSync(filePath))
@@ -19,6 +26,7 @@ function dataVerification(filePath, callback) {
             return callback("Fichier non conforme.", null);
         }
 
+        /****** VERIFICATION DESACTIVEE CAR GEREE AU NIVEAU DU CLIENT ******/
         // // Le tableau ne contient pas de données
         // if (!Array.isArray(taskTab) || taskTab.length == 0)
         //     return callback("Vous n'avez aucune tâche en cours.", null);
@@ -27,7 +35,14 @@ function dataVerification(filePath, callback) {
         return callback(null, taskTab);
     })
 }
-
+/**
+ * Enregistre les données de tâches (taskTab) dans le fichier taskTab.json.
+ *
+ * @param {string} filePath - Chemin du fichier d'enregistrement.
+ * @param {Array} taskTab - Tableau de tâches à enregistrer.
+ * @param {function} callback - Callback à appeler une fois l'enregistrement terminé.
+ * @returns {callback} - Retourne les données enregistrées ou l'erreur rencontrée.
+ */
 function dataSave(filePath, taskTab, callback) {
     // Enregistrement des modifications dans le fichier
     fs.writeFile(filePath, JSON.stringify(taskTab), (err) => {
@@ -37,7 +52,8 @@ function dataSave(filePath, taskTab, callback) {
         return callback(null, taskTab);
     });
 }
+
 module.exports = {
     dataVerification,
     dataSave
-};
+}
