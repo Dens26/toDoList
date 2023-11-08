@@ -15,9 +15,9 @@ const cardGroup = document.querySelectorAll(".card-group");
  */
 for (let i = 0; i < cardGroup.length; i++) {
     // Ecouteurs
-    const checkbox = cardGroup[i].children[0].children[0];
-    const deleteButton = cardGroup[i].children[1].children[0];
-    const editButton = cardGroup[i].children[1].children[1];
+    const checkbox = cardGroup[i].children[0].children[0].children[0];
+    const deleteButton = cardGroup[i].children[0].children[1].children[0];
+    const editButton = cardGroup[i].children[0].children[1].children[1];
 
     // Met à jour la taille de chaque tâche
     UpdateCardHeight(cardGroup[i]);
@@ -25,7 +25,7 @@ for (let i = 0; i < cardGroup.length; i++) {
     // Ecouteurs sur les checkbox
     checkbox.addEventListener("click", () => {
         // Modification de la valeur du checkbox dans le tableau de tâche
-        taskTab[i].finished = cardGroup[i].children[0].children[0].checked;
+        taskTab[i].finished = cardGroup[i].children[0].children[0].children[0].checked;
 
         // Enregistrement sur le serveur
         SaveTaskTab(taskTab);

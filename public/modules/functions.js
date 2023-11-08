@@ -44,7 +44,7 @@ export async function LoadTaskTab(pageName) {
             ul_cardContainer.appendChild(li_cardGroup);
 
             // Mise à jour de l'affichage
-            if (!li_cardGroup.children[0].children[0].checked)
+            if (!li_cardGroup.children[0].children[0].children[0].checked)
                 nbr++;
             UpdateDisplay(task, li_cardGroup, nbr);
         }
@@ -73,8 +73,8 @@ export async function DeleteTaskTab(taskId) {
  */
 export function UpdateDisplay(task, card, nbr) {
     // Vérifie les cases à cocher et met à jour l'affichage.
-    let index = card.children[0].children[0].checked ? 1 : 0;
-    nbr = card.children[0].children[0].checked ? nbr - 1 : nbr + 1;
+    let index = card.children[0].children[0].children[0].checked ? 1 : 0;
+    nbr = card.children[0].children[0].children[0].checked ? nbr - 1 : nbr + 1;
     UpdateCheckbox(card, index);
 
     // Met à jour le nombre de tâches restante
@@ -102,16 +102,16 @@ export function ShowTaskNumber(task, nbr) {
  */
 export function UpdateCardHeight(card) {
     // Définit la hauteur initiale de la carte à 50px
-    card.style.height = "50px";
+    card.style.height = "65px";
 
     // Vérifie si le contenu dépasse la hauteur de la carte
     if (card.scrollHeight > card.offsetHeight) {
 
         // Calcule le nombre de lignes nécessaires pour afficher le contenu
-        const numRow = parseInt(card.scrollHeight / 50 + 1);
+        const numRow = parseInt(card.scrollHeight / 65 + 1);
 
         // Calcule la nouvelle hauteur de la carte en fonction du nombre de lignes nécessaires
-        card.style.height = `${(numRow * 50) + numRow * (numRow + 1)}px`;
+        card.style.height = `${(numRow * 65) + numRow * (numRow + 1)}px`;
 
         // Met à jour la propriété de la grille pour s'étendre sur le nombre de lignes nécessaires
         card.style.gridRow = `span ${numRow}`;
@@ -130,6 +130,10 @@ function createCard(task) {
     const li_cardGroup = document.createElement('li');
     li_cardGroup.className = "card-group";
 
+    const div_cardTop = document.createElement('div');
+    div_cardTop.className = "card-top";
+    li_cardGroup.appendChild(div_cardTop);
+
     // Crée la partie gauche de la carte.
     const div_cardLeft = document.createElement("div");
     div_cardLeft.className = "card-left"
@@ -143,10 +147,10 @@ function createCard(task) {
 
     // Crée les paragraphes
     div_cardText.appendChild(CreateParagraph("card-title", task.name));
-    div_cardText.appendChild(CreateParagraph("card-description", task.description));
+    li_cardGroup.appendChild(CreateParagraph("card-description", task.description));
 
     div_cardLeft.appendChild(div_cardText);
-    li_cardGroup.appendChild(div_cardLeft);
+    div_cardTop.appendChild(div_cardLeft);
 
     // Crée la partie droite de la carte.
     const div_cardButton = document.createElement("div");
@@ -156,7 +160,7 @@ function createCard(task) {
     div_cardButton.appendChild(CreateButton("card-delete", "Supprimer", "trash-solid"));
     div_cardButton.appendChild(CreateButton("card-edit", "Modifier", "pen-to-square-solid"));
 
-    li_cardGroup.appendChild(div_cardButton);
+    div_cardTop.appendChild(div_cardButton);
 
     return li_cardGroup;
 }
@@ -232,9 +236,10 @@ function CreateCheckbox(task, chckElement, chckClass, chckType) {
  */
 const checkboxValueTab = [["white", "gray"], ["none", "line-through"], ["visible", "hidden"]];
 function UpdateCheckbox(card, index) {
+    // console.log(card.children[0].children[1].children[1]);
     card.style.background = checkboxValueTab[0][index]; // background
     card.children[0].children[1].children[0].style.textDecoration = checkboxValueTab[1][index]; // Titre de la tâche
     card.children[0].children[1].children[1].style.textDecoration = checkboxValueTab[1][index]; // Description de la tâche
-    card.children[1].children[1].style.visibility = checkboxValueTab[2][index]; // Visibilité du bouton
+    card.children[0].children[1].children[1].style.visibility = checkboxValueTab[2][index]; // Visibilité du bouton
 }
 //#endregion

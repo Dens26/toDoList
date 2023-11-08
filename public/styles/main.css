@@ -39,7 +39,7 @@ body {
 }
 
 img {
-    width: 25px;
+    width: 20px;
 }
 
 ul {
@@ -56,7 +56,7 @@ ul {
     align-items: center;
     position: sticky;
     top: 0;
-    padding: 20px;
+    padding: 5px 10px;
 }
 
 .header-title {
@@ -115,12 +115,19 @@ ul {
 
 .card-group {
     color: var(--buttonColor);
-    display: flex;
+    display: grid;
+    grid-template-rows: 35px auto;
     margin: 3px;
-    justify-content: space-between;
     border-radius: 5px;
     box-shadow: 0 0 5px black;
     padding: 5px;
+}
+
+.card-top{
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card-left {
@@ -128,7 +135,6 @@ ul {
 }
 
 .card-checkbox {
-    align-self: start;
     margin: 5px;
 }
 
@@ -140,17 +146,18 @@ ul {
 }
 
 .card-description {
-    padding: 0 10px;
+    margin: auto 0;
     font-weight: 400;
     font-size: 0.8rem;
-    text-align: justify;
+    text-align: Left;
+    grid-row: 2;
 }
 
 .card-button {
-    align-self: top;
     display: flex;
     padding: 0 clamp(1px, 2vw, 15px);
     gap: clamp(0.5rem, 2vw, 1.5rem);
+    grid-row: 1;
 }
 
 /* End Cartes */
