@@ -24,16 +24,17 @@ if (params.get('value') == "edit") {
 }
 
 // Ecouteur sur le bouton "Ajouter"
-submitButton[0].addEventListener("click", () => {
+submitButton[0].addEventListener("click", async (evt) => {
     // Si la tâche n'est pas null
     if (inputName.value.length != 0 && inputDescription.value.length != 0) {
+        evt.preventDefault();
         if (params.get('value') == "new") {
             // Création de l'id
             let id = createId(taskTab);
 
             // Nouvelle variables task
             taskTab.push(new TaskObject(id, inputName.value, inputDescription.value, false));
-            SaveTaskTab(taskTab);
+            await SaveTaskTab(taskTab);
         }
         else if (params.get('value') == "edit") {
             // Récupération de la tâche à modifier
@@ -44,8 +45,9 @@ submitButton[0].addEventListener("click", () => {
             task.description = inputDescription.value;
 
             // Enregistrement
-            SaveTaskTab(taskTab);
+            await SaveTaskTab(taskTab);
         }
+        window.location.href = "index.html";
     }
 })
 

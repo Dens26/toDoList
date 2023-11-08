@@ -61,16 +61,6 @@ app.delete('/taskTab/:id', (query, result) => {
     })
 })
 
-// Modification d'une nouvelle tâche
-app.put('/taskTab/:id', (query, result) => {
-    dataLoad(path.join(__dirname, 'taskTab.json'), (error, taskTab) => {
-        if (error)
-            result.status(500).json(error);
-
-        task = taskTab.find(task => task.id == query.params.id);
-    })
-})
-
 app.listen(port, () => {
     console.log("Server is online!");
 });

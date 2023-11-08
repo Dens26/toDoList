@@ -7,12 +7,30 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Background */
+    --mainBackgroundColor: whiteSmoke;
+    --containerBackgroundColor: linear-gradient(45deg, #1a5276, #0b2636);
+
+    --mainButtonBackgroundColor: #153346 ;
+    --mainHoverButtonBackgroundColor: #0b2636;
+    --formButtonBackgroundColor: whiteSmoke;
+    --formHoverButtonBackgroundColor: rgb(220, 220, 220); 
+
+    /* Color */
+    --mainColor: rgb(25, 25, 25);
+    --mainButtonColor : white;
+
+    --formColor : white;
+    --formButtonColor:  rgb(25, 25, 25);
+}
+
 body {
     Font-family: Verdana, Geneva, sans-serif;
-    color: white;
+    color: var(--mainColor);
     max-width: 1200px;
     margin: 0 auto;
-    background: #034141;
+    background: var(--mainBackgroundColor);
 }
 
 .read-only {
@@ -21,7 +39,7 @@ body {
 }
 
 img {
-    width: 20px;
+    width: 25px;
 }
 
 ul {
@@ -34,7 +52,7 @@ ul {
 .main-header {
     display: flex;
     justify-content: space-around;
-    background: #034141;
+    background: var(--mainBackgroundColor);
     align-items: center;
     position: sticky;
     top: 0;
@@ -64,7 +82,7 @@ ul {
 }
 
 .header-newTask {
-    color: black;
+    color: var(--mainButtonColor);
     text-decoration: none;
     border-radius: 5px;
     display: flex;
@@ -72,13 +90,13 @@ ul {
     height: 45px;
     justify-content: center;
     align-items: center;
-    background: white;
+    background: var(--mainButtonBackgroundColor);
     font-weight: 700;
     font-size: 2rem;
 }
 
 .header-newTask:hover {
-    background: rgb(165, 165, 165);
+    background: var(--mainHoverButtonBackgroundColor);
 }
 
 .main-container {
@@ -86,7 +104,7 @@ ul {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    background: #658181;
+    background: var(--containerBackgroundColor);
     border-radius: 5px;
 }
 
@@ -96,7 +114,7 @@ ul {
 }
 
 .card-group {
-    color: black;
+    color: var(--buttonColor);
     display: flex;
     margin: 3px;
     justify-content: space-between;
@@ -137,17 +155,18 @@ ul {
 
 /* End Cartes */
 /* Formulaire */
-.form-header-title{
+.form-header-title {
     text-align: center;
+    padding-top: 15px;
 }
+
 .form-submit {
     width: 80vw;
     max-width: 500px;
     padding: 15px;
     margin: 20px auto;
     border-radius: 5px;
-    box-shadow: 0 0 5px black;
-    background: #658181;
+    background: var(--containerBackgroundColor);
     ;
 }
 
@@ -155,6 +174,7 @@ ul {
     display: flex;
     flex-flow: column;
     margin: 0 auto;
+    color : var(--formColor);
 }
 
 .submit-group label {
@@ -168,7 +188,7 @@ ul {
 }
 
 .submit-group textarea {
-    height: 60px;
+    height: 100px;
     border-radius: 5px;
     resize: none;
     padding: 5px;
@@ -183,10 +203,10 @@ ul {
 
 .submit-button {
     width: 150px;
-    color: black;
+    color: var(--formButtonColor);
     text-decoration: none;
     text-align: center;
-    background: white;
+    background: var(--formButtonBackgroundColor);
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -196,7 +216,7 @@ ul {
 }
 
 .submit-button:hover {
-    background: rgb(165, 165, 165);
+    background: var(--formHoverButtonBackgroundColor);
 }
 
 /* End Formulaire */

@@ -64,7 +64,6 @@ export async function SaveTaskTab(taskTab) {
     await fetchSaveTaskTab(taskTab, "taskTab");
 }
 export async function DeleteTaskTab(taskId) {
-    console.log(taskId);
     await fetchDeleteTaskTab(taskId, "taskTab");
 }
 

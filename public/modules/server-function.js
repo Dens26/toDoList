@@ -49,12 +49,13 @@ export async function fetchSaveTaskTab(taskTab, _url) {
 }
 
 export async function fetchDeleteTaskTab(taskId, _url){
-    console.log("ici");
     const url = `http://localhost:5000/${_url}/${taskId}`;
-    console.log(url);
     try {
         const response = await fetch(url, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
         });
         if (response.ok)
             await response.json();
