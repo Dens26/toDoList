@@ -15,18 +15,18 @@
     <header class="form-header">
         <h1 class="form-header-title">Nouvelle tâche</h1>
     </header>
-    <form class="form-submit" action="index.html">
-        <div class="submit-group">
+    <form class="form-task" id="form-task" action="#">
+        <div class="task-group">
             <label for="name" title="Nom">Nom</label>
-            <input type="text" title="nom" id="name" placeholder="Nom" required maxlength="30">
+            <input type="text" title="nom" id="name" name="name" placeholder="Nom" required maxlength="30">
         </div>
-        <div class="submit-group">
+        <div class="task-group">
             <label for="description" title="Description">Description</label>
-            <textarea title="description" id="description" placeholder="Description" required></textarea>
+            <textarea title="description" id="description" name="description" placeholder="Description" required></textarea>
         </div>
-        <div class="submit-group-button">
-            <button class="submit-button" type="submit">Ajouter</button>
-            <a href="index.html" class="submit-button" title="Annuler">Annuler</a>
+        <div class="task-group-button">
+            <button class="task-button" type="submit">Ajouter</button>
+            <a href="index.html" class="task-button" title="Annuler">Annuler</a>
         </div>
     </form>
 </body>
